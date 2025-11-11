@@ -1,0 +1,81 @@
+Realizame una pagina web en html, css y javascript donde se conecte con la Api de Teachable Machine link de la Api = teachablemachine.withgoogle.com/models/PL2IPVGy0/ donde me tiene que validar las siguientes categorias de imagen Comida saludable, habitos saludables con la opcion de la Api en "HABITO SALUDABLE" y las siguientes categorias de imagen Comida no saludable, habitos no saludables con la opcion de la Api en "HABITO NO SALUDABLE", que se muestre en una pantalla pequeña cuando se este detectando el gesto de la persona, necesito un contador de aciertos y de errores cometidos por el usuario y un visor dinamico donde se muestren las imagenes.
+
+Necesito que trabaje asi la aplicación:
+
+Cuando muestre o cargue imagenes de Comida saludable haga la pregunta = ¿Esta es comida no saludable?, ahi se responde con la opcion de la Api en "HABITO SALUDABLE"
+
+Cuando muestre o cargue imagenes de Comida no saludable haga la pregunta = ¿Esta es comida saludable?, ahi se responde con la opcion de la Api en "HABITO NO SALUDABLE"
+
+Cuando muestre o cargue imagenes de habitos saludables haga la pregunta = ¿Estos son habitos no saludable?, ahi se responde con la opcion de la Api en "HABITO SALUDABLE"
+
+Cuando muestre o cargue imagenes de habitos no saludables haga la pregunta = ¿Estos son habitos saludables?, ahi se responde con la opcion de la Api en "HABITO NO SALUDABLE"
+
+{
+  "categoria": "Comida saludable",
+  "urls": [
+    "https://images.pexels.com/photos/34622256/pexels-photo-34622256.jpeg",
+    "https://images.pexels.com/photos/33867268/pexels-photo-33867268.jpeg",
+    "https://images.pexels.com/photos/34628046/pexels-photo-34628046.jpeg",
+    "https://images.pexels.com/photos/5305435/pexels-photo-5305435.jpeg",
+    "https://images.pexels.com/photos/1860204/pexels-photo-1860204.jpeg",
+    "https://images.pexels.com/photos/18976992/pexels-photo-18976992.jpeg",
+    "https://images.pexels.com/photos/28308001/pexels-photo-28308001.jpeg",
+    "https://images.pexels.com/photos/20922952/pexels-photo-20922952.jpeg",
+    "https://images.pexels.com/photos/28397635/pexels-photo-28397635.jpeg",
+    "https://images.pexels.com/photos/31745184/pexels-photo-31745184.jpeg",
+    "https://images.pexels.com/photos/5966441/pexels-photo-5966441.jpeg",
+    "https://images.pexels.com/photos/8697526/pexels-photo-8697526.jpeg",
+    "https://images.pexels.com/photos/30350312/pexels-photo-30350312.jpeg",
+    "https://images.pexels.com/photos/10895785/pexels-photo-10895785.jpeg",
+    "https://images.pexels.com/photos/13322664/pexels-photo-13322664.jpeg",
+    "https://images.pexels.com/photos/18708077/pexels-photo-18708077.jpeg"
+  ]
+}
+
+{
+  "categoria": "Comida no saludable",
+  "urls": [
+    "https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg",
+    "https://images.pexels.com/photos/5903317/pexels-photo-5903317.jpeg",
+    "https://images.pexels.com/photos/17778862/pexels-photo-17778862.jpeg",
+    "https://images.pexels.com/photos/5848056/pexels-photo-5848056.jpeg",
+    "https://images.pexels.com/photos/17628576/pexels-photo-17628576.jpeg",
+    "https://images.pexels.com/photos/11710530/pexels-photo-11710530.jpeg",
+    "https://images.pexels.com/photos/5737577/pexels-photo-5737577.jpeg",
+    "https://images.pexels.com/photos/11413390/pexels-photo-11413390.jpeg",
+    "https://images.pexels.com/photos/9001226/pexels-photo-9001226.jpeg",
+    "https://images.pexels.com/photos/20645731/pexels-photo-20645731.jpeg",
+    "https://images.pexels.com/photos/12599942/pexels-photo-12599942.jpeg",
+    "https://images.pexels.com/photos/2067396/pexels-photo-2067396.jpeg",
+    "https://images.pexels.com/photos/2280545/pexels-photo-2280545.jpeg",
+    "https://images.pexels.com/photos/14456295/pexels-photo-14456295.jpeg",
+    "https://images.pexels.com/photos/5602710/pexels-photo-5602710.jpeg"
+  ]
+}
+
+{
+  "categoria": "habitos saludables",
+  "urls": [
+    "https://images.pexels.com/photos/4325466/pexels-photo-4325466.jpeg",
+    "https://images.pexels.com/photos/8034028/pexels-photo-8034028.jpeg",
+    "https://images.pexels.com/photos/8034578/pexels-photo-8034578.jpeg",
+    "https://images.pexels.com/photos/8617545/pexels-photo-8617545.jpeg",
+    "https://images.pexels.com/photos/8617821/pexels-photo-8617821.jpeg",
+    "https://images.pexels.com/photos/5621936/pexels-photo-5621936.jpeg",
+    "https://images.pexels.com/photos/1231365/pexels-photo-1231365.jpeg",
+    "https://images.pexels.com/photos/5693047/pexels-photo-5693047.jpeg"
+  ]
+}
+
+{
+  "categoria": "habitos no saludables",
+  "urls": [
+    "https://www.infobae.com/resizer/v2/PUX3F6CSHFEWLJPJFVRYXD7C7M.jpg?auth=31c49f83af7f34f05f07ad5a31799b5ada523ac6874e3acb24db0103a8efb29f&smart=true&width=992&height=558&quality=85",
+    "https://www.lavanguardia.com/files/content_image_desktop_filter/uploads/2021/08/19/611e65766d7fb.jpeg",
+    "https://w2a-noticierovenevision-net.s3.amazonaws.com/public/media/images/shutterstock_244022641-1200x900-934b29.jpg",
+    "https://s3.eu-west-3.amazonaws.com/com.criarconsentidocomun.media/2022/06/comer-frente-a-una-pantalla-puede-causar-problemas-nutricionales-2-768x488.jpg",
+    "https://www.semana.com/resizer/v2/IRSCZ4Y67ZDAZAEUCWD3OFDMUM.jpg?auth=acc52641d06e9db04e49f3373b7a269262c433cee8eaddf0a7db22934d90f4f2&smart=true&quality=75&width=1280&fitfill=false",
+    "https://www.clikisalud.net/wp-content/uploads/2020/02/sedentarismo-depresion-adultez.jpg",
+    "https://odontologos.com.co/assets/images/news/2024-11-19_073934comporta.jpg"
+  ]
+}
