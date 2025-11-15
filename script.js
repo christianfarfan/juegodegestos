@@ -77,17 +77,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (inscripcionForm) {
         inscripcionForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-
+    
             const submitButton = inscripcionForm.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
             submitButton.textContent = 'Enviando...';
             submitButton.classList.add('loading');
             submitButton.disabled = true;
-
+    
             // Validar campos antes de enviar
             const inputs = inscripcionForm.querySelectorAll('input, select');
             let allValid = true;
             inputs.forEach(i => { if (!validateField(i)) allValid = false; });
+    
             if (!allValid) {
                 showFormMessage('Por favor corrige los campos marcados.', 'error');
                 submitButton.textContent = originalText;
@@ -95,28 +96,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitButton.disabled = false;
                 return;
             }
-
+    
+            // Construir JSON según tu modelo
+            const jsonPayload = {
+                "nombre-padre": document.getElementById("nombre-padre").value,
+                "email": document.getElementById("email").value,
+                "telefono": Number(document.getElementById("telefono").value),
+                "nombre-nino": document.getElementById("nombre-nino").value,
+                "edad-nino": Number(document.getElementById("edad-nino").value),
+                "plan-membresia": document.getElementById("plan-membresia").value
+            };
+    
             try {
-                // Adjuntar carrito al envío
-                const cartHiddenInput = document.getElementById('carrito-json');
-                if (cartHiddenInput && typeof cartState !== 'undefined') {
-                    cartHiddenInput.value = JSON.stringify(cartState.items || []);
-                }
-                const formData = new FormData(inscripcionForm);
-                const response = await fetch(inscripcionForm.action, {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json' },
-                    body: formData
+                // Enviar JSON al Webhook de n8n
+                const response = await fetch("https://chrifar.app.n8n.cloud/webhook/c1f282e3-22dc-434a-a3a9-bf1f5b2520d4", {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(jsonPayload)
                 });
-
+    
                 if (response.ok) {
                     showFormMessage('¡Inscripción enviada exitosamente! Te contactaremos pronto.', 'success');
                     inscripcionForm.reset();
                 } else {
                     const data = await response.json().catch(() => null);
-                    const msg = data && data.errors ? data.errors.map(e => e.message).join(', ') : 'Ocurrió un error. Intenta de nuevo.';
+                    const msg = data && data.errors 
+                        ? data.errors.map(e => e.message).join(', ') 
+                        : 'Ocurrió un error. Intenta de nuevo.';
                     showFormMessage(msg, 'error');
                 }
+    
             } catch (err) {
                 showFormMessage('No se pudo conectar. Verifica tu internet e inténtalo nuevamente.', 'error');
             } finally {
@@ -127,24 +139,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (message) message.scrollIntoView({ behavior: 'smooth' });
             }
         });
-        
+    
         // Validación en tiempo real
         const formInputs = inscripcionForm.querySelectorAll('input, select');
         formInputs.forEach(input => {
             input.addEventListener('blur', function() {
                 validateField(this);
             });
-            
+    
             input.addEventListener('input', function() {
-                // Remover clases de error al escribir
+                // limpiar errores al escribir
                 this.classList.remove('border-red-500');
                 const errorMsg = this.parentNode.querySelector('.error-message');
-                if (errorMsg) {
-                    errorMsg.remove();
-                }
+                if (errorMsg) errorMsg.remove();
             });
         });
     }
+    
     
     // Función para validar campos del formulario
     function validateField(field) {
